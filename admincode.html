@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admincode.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+
+  <body onload="checkLogin()">
+    <div id="loader" class="loader-overlay" style="display: none">
+      <div class="loader"></div>
+    </div>
+    <div class="navbar">
+      <div class="logo">
+        <img
+          src="./logo/WhatsApp Image 2025-07-05 at 20.55.29_ac21f277.png"
+          alt="Logo"
+        />
+      </div>
+      <div class="title">जनकल्याण आरोग्य सेवा</div>
+      <div style="display: flex; gap: 10px; align-items: center">
+        <button
+          id="installBtn"
+          class="install-btn"
+          style="display: none"
+          title="Install App"
+        >
+          <i class="fas fa-download"></i>
+        </button>
+        <div class="logout">
+          <button onclick="logout()">
+            <i class="fas fa-right-from-bracket"></i> Logout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <h1>👨‍⚕️ Admin Dashboard</h1>
+
+    <div class="tabs">
+      <button class="tab-button active" onclick="openTab(event, 'doctorTab')">
+        Doctor Appointment
+      </button>
+      <button class="tab-button" onclick="openTab(event, 'dabbaTab')">
+        Dabbewala Appointment
+      </button>
+    </div>
+
+    <div id="doctorTab" class="tab-content active">
+      <form id="doctorForm">
+        <label>Patient Name</label>
+        <input
+          type="text"
+          name="patientName"
+          placeholder="Enter Patient Name"
+          required
+        />
+
+        <label>Patient Complain</label>
+        <textarea
+          name="complain"
+          placeholder="Enter Patient Complain"
+        ></textarea>
+
+        <label>Hospital Name</label>
+        <input
+          type="text"
+          name="hospitalName"
+          placeholder="Enter Hospital Name"
+          required
+        />
+
+        <label>Doctor Name</label>
+        <input
+          type="text"
+          name="doctorName"
+          required
+          placeholder="Enter Doctor Name"
+        />
+
+        <label>Mobile Number</label>
+        <input
+          type="text"
+          name="mobile"
+          pattern="\d{10}"
+          maxlength="10"
+          required
+          placeholder="Enter Mobile Number"
+        />
+
+        <button type="submit" click="submitdoctorform()">Submit</button>
+      </form>
+    </div>
+
+    <div id="dabbaTab" class="tab-content">
+      <form id="dabbaForm">
+        <label>Dabbewala Name</label>
+        <input
+          type="text"
+          name="Dabbewalaname"
+          placeholder="Enter Dabbewala Name"
+          required
+        />
+        <label>Dabbewala Mobile Number</label>
+        <input
+          type="text"
+          name="Dabbewalanumber"
+          placeholder="Enter Dabbewala Mobile Number"
+          required
+        />
+        <label>Patient Name</label>
+        <input
+          type="text"
+          name="patientName"
+          placeholder="Enter Patient Name"
+          required
+        />
+
+        <label>Hospital Name</label>
+        <input
+          type="text"
+          name="hospitalName"
+          placeholder="Enter Hospital Name"
+          required
+        />
+
+        <label>Bed No / Room No</label>
+        <input
+          type="text"
+          name="bedNumber"
+          placeholder="Enter Bed/Room no"
+          required
+        />
+
+        <button type="submit" click="submitdabbewalaform()">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbztobfimwkvCO7E7ed5TZiHvxrvROHh93pfnpzDk5X5kISgotG77d9WHKub24n2rXX3/exec";
+
+      document
+        .getElementById("doctorForm")
+        .addEventListener("submit", async function (e) {
+          document.getElementById("loader").style.display = "flex";
+          e.preventDefault();
+          const form = this;
+          const formData = new FormData(form);
+
+          const patientName = form.patientName.value;
+          const doctorName = form.doctorName.value;
+          const hospitalName = form.hospitalName.value;
+          const mobile = form.mobile.value;
+
+          try {
+            const res = await fetch(scriptURL, {
+              method: "POST",
+              body: formData,
+            });
+
+            const result = await res.json();
+            if (result.status === "success") {
+              const message = `Hello ${patientName}, your appointment with Dr. ${doctorName} at ${hospitalName} is confirmed. ✅ जनकल्याण आरोग्य सेवा`;
+
+              await fetch("http://localhost:3000/send-sms", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ number: mobile, message: message }),
+              });
+
+              alert("✅ Doctor Appointment Submitted & SMS Sent!");
+              form.reset();
+            } else {
+              alert("❌ Google Sheet Error: " + result.message);
+            }
+          } catch (err) {
+            alert("❌ Error submitting doctor form.");
+            console.error(err);
+          } finally {
+            document.getElementById("loader").style.display = "none"; // ✅ Always hide loader
+          }
+        });
+
+      // 📤 Dabbewala Appointment Form Submission
+      document
+        .getElementById("dabbaForm")
+        .addEventListener("submit", async function (e) {
+          document.getElementById("loader").style.display = "flex";
+
+          e.preventDefault();
+          const form = this;
+          const formData = new FormData(form);
+          const dabbewalaName = form.Dabbewalaname.value;
+          const dabbewalaNumber = form.Dabbewalanumber.value;
+          const patientName = form.patientName.value;
+          const hospitalName = form.hospitalName.value;
+          const bedNumber = form.bedNumber.value;
+
+          try {
+            const res = await fetch(scriptURL, {
+              method: "POST",
+              body: formData,
+            });
+
+            const result = await res.json();
+            if (result.status === "success") {
+              const message = `Hello ${dabbewalaName}, your tiffin delivery for ${patientName} at ${hospitalName} and ${BedNumber} is confirmed. ✅ जनकल्याण आरोग्य सेवा`;
+
+              await fetch("http://localhost:3000/send-sms", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  number: dabbewalaNumber,
+                  message: message,
+                }),
+              });
+
+              alert("✅ Dabbewala Appointment Submitted & SMS Sent!");
+              form.reset();
+            } else {
+              alert("❌ Google Sheet Error: " + result.message);
+            }
+          } catch (err) {
+            alert("❌ Error submitting dabbewala form.");
+            console.error(err);
+          } finally {
+            document.getElementById("loader").style.display = "none"; // ✅ Always hide loader
+          }
+        });
+
+      function openTab(event, tabId) {
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((tab) => tab.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-button")
+          .forEach((btn) => btn.classList.remove("active"));
+        document.getElementById(tabId).classList.add("active");
+        event.target.classList.add("active");
+      }
+
+      document
+        .getElementById("doctorForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("✅ Doctor Appointment Submitted!");
+          this.reset();
+        });
+
+      document
+        .getElementById("dabbaForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("✅ Dabbewala Appointment Submitted!");
+          this.reset();
+        });
+
+      function checkLogin() {
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+          alert("Please login first.");
+          window.location.href = "login.html";
+        }
+      }
+
+      function logout() {
+        localStorage.removeItem("isLoggedIn");
+        window.location.href = "login.html";
+      }
+
+      // Optional: PWA install
+      let deferredPrompt;
+      const installBtn = document.getElementById("installBtn");
+
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = "block";
+      });
+
+      installBtn.addEventListener("click", async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          if (outcome === "accepted") {
+            console.log("✅ App installed");
+            installBtn.style.display = "none";
+          } else {
+            console.log("❌ App install declined");
+          }
+          deferredPrompt = null;
+        }
+      });
+    </script>
+  </body>
+</html>

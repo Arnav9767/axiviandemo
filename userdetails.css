@@ -1,0 +1,253 @@
+#dataTable tbody {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+#dataTable tbody::-webkit-scrollbar {
+  width: 6px;
+}
+#dataTable tbody::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  padding: 20px;
+  background: #eef2f5;
+  color: #333;
+  margin: 0;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+.exportpdfbtn {
+  padding: 10px;
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  float: right;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+td:first-child {
+  font-weight: bold;
+}
+
+h2 {
+  text-align: center;
+  font-size: 22px;
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.success-msg {
+  text-align: center;
+  font-size: 16px;
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  font-size: 14px;
+  border-collapse: collapse;
+  background-color: #fafafa;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  background: #03adec;
+  color: #fff;
+  
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* scroller css start */
+#hospitalTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+th.sr-col,
+#hospitalTable td:first-child {
+  width: 40px;
+  max-width: 50px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#hospitalTable th,
+#hospitalTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.scrollable-body {
+  display: block;
+  max-height: 400px;
+  /* adjust height to show approx. 10 rows */
+  overflow-y: auto;
+}
+
+.scrollable-body tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+#hospitalTable thead,
+#hospitalTable tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+#hospitalTable thead {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* scroller css end */
+
+.back-btn {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e67514;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.back-btn:hover {
+  background-color: #303f9f !important;
+}
+
+#hospitalTable {
+  width: 100%;
+  font-size: 14px;
+  border-collapse: collapse;
+  background-color: #fafafa;
+  margin-top: 20px;
+
+}
+
+#hospitalTable th,
+#hospitalTable td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+#hospitalTable th {
+  background-color: #03adec;
+  color: #fff;
+  text-align: center;
+
+}
+
+#hospitalTable td:first-child {
+  font-weight: bold;
+}
+table tr:nth-child(even) {
+  background-color: #f2f2f2; /* light gray for even rows */
+}
+
+table tr:nth-child(odd) {
+  background-color: #ffffff; /* white for odd rows */
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  table {
+    font-size: 13px;
+  }
+
+  th,
+  td {
+    padding: 8px 10px;
+  }
+
+  .back-btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+.footer {
+  margin-top: 40px;
+  padding: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  border-top: 1px solid #ddd;
+}
+
+.exportpdfbtn:hover {
+  animation: blinkBlue 1s infinite;
+}
+
+@keyframes blinkBlue {
+  0% {
+    background-color: #3f51b5;
+    color: #fff;
+  }
+
+  50% {
+    background-color: #2196f3;
+    color: #fff;
+  }
+
+  100% {
+    background-color: #3f51b5;
+    color: #fff;
+  }
+}
+
+.back-btn:hover {
+  background-color: #f04a22;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}

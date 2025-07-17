@@ -1,0 +1,293 @@
+/* ✅ Additional Responsive Media Queries */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .navbar .logo img {
+    height: 40px;
+  }
+
+  .navbar .title {
+    font-size: 1.4rem;
+    margin-top: 5px;
+  }
+
+  .tabs {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tab-button {
+    width: 90%;
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .tab-content {
+    width: 90%;
+    padding: 20px;
+    margin: 0 auto 30px;
+    min-height: auto;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input, textarea {
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .logout button {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  .navbar .install-btn {
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+
+  h1 {
+    font-size: 22px;
+    margin: 20px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar .title {
+    font-size: 1.2rem;
+  }
+
+  .tab-button {
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+}
+
+
+ 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      height: 100%;
+      overflow-x: hidden; /* 🚫 No horizontal scroll */
+    }
+
+    .navbar {
+      background: linear-gradient(to right, #1a237e, #03adec);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .logo img {
+      height: 50px;
+      margin-right: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .title {
+      font-size: 1.9rem;
+      font-weight: 800;
+      text-align: center;
+      flex: 1;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .navbar .install-btn {
+      background: #e67514;
+      border: none;
+      color: white;
+      padding: 10px 14px;
+      font-size: 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .navbar .install-btn:hover {
+      background: #ffffff44;
+    }
+
+    .logout button {
+      background: #f44336;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    h1 {
+      text-align: center;
+      color: #3f51b5;
+      margin: 30px 0 20px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      background: #e0e0e0;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .tab-button.active {
+      background: #3f51b5;
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 0 auto 40px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      min-height: 400px; /* Ensure no shifting height */
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button[type="submit"] {
+      background: #3f51b5;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    button[type="submit"]:hover {
+      background: #2c3e91;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .navbar .title {
+        margin-top: 10px;
+      }
+
+      .navbar .install-btn {
+        border-radius: 30px;
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+
+      .tab-content {
+        margin: 10px 20px;
+        width: auto;
+      }
+    }
+  /* 🔲 Fullscreen overlay for loader */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🔄 Animated triangle illusion loader */
+.loader {
+  width: 60px;
+  aspect-ratio: 1.154; /* Perfect triangle ratio */
+  --c: #0000 ,#ef8025 2deg 59deg,#0000 61deg;
+  --c1: conic-gradient(from 149deg at top, var(--c));
+  --c2: conic-gradient(from -31deg at bottom, var(--c));
+  background:
+    var(--c1) top,
+    var(--c1) bottom right,
+    var(--c2) bottom,
+    var(--c1) bottom left;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  animation: l37 1s infinite;
+}
+
+@keyframes l37 {
+  80%, 100% {
+    background-position: bottom right, bottom left, bottom, top;
+  }
+}
