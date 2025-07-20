@@ -482,7 +482,7 @@
             const message = `Hi ${formValues.name}, your registration was successful! ✅ जनकल्याण आरोग्य सेवा मध्ये आपले स्वागत आहे! Your Referral ID: ${formValues.referral}`;
 
             // ✅ Send SMS
-            await fetch("http://localhost:3000/send-sms", {
+            await fetch("https://backend-butx.onrender.com", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ number: formValues.mobile, message }),
