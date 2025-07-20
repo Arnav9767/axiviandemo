@@ -136,7 +136,7 @@
       if (result.status === "success") {
         const message = `Hello ${dabbewalaName}, your tiffin delivery for ${patientName} at ${hospitalName} is confirmed. ✅ जनकल्याण आरोग्य सेवा`;
 
-        await fetch("", {
+        await fetch("https://backend-butx.onrender.com/send-sms", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ number: dabbewalaNumber, message: message })
