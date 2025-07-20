@@ -168,7 +168,7 @@
             if (result.status === "success") {
               const message = `Hello ${patientName}, your appointment with Dr. ${doctorName} at ${hospitalName} is confirmed. ✅ जनकल्याण आरोग्य सेवा`;
 
-              await fetch("http://localhost:3000/send-sms", {
+              await fetch("https://backend-butx.onrender.com", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ number: mobile, message: message }),
@@ -212,7 +212,7 @@
             if (result.status === "success") {
               const message = `Hello ${dabbewalaName}, your tiffin delivery for ${patientName} at ${hospitalName} and ${BedNumber} is confirmed. ✅ जनकल्याण आरोग्य सेवा`;
 
-              await fetch("http://localhost:3000/send-sms", {
+              await fetch("https://backend-butx.onrender.com", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
